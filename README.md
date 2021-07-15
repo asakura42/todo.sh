@@ -13,6 +13,9 @@ So it becomes (colored):
         (C)     buy milk          @food     +home     2021-07-17
                 listen to music             +random  
 ```
+
+Colors like in official todotxt-cli (yellow for A, green for B, blue for C). **Added red for tasks with expired due.**
+
 By default list is sorted by:
 
 1. Pin
