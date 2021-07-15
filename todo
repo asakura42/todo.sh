@@ -12,7 +12,7 @@ out () {
 	due=$(echo "$line" | grep -Po 'due:\d{4}-\d{2}-\d{2}' | sed 's/due://')
 	taskdate=$(date -d "$due" +%s)
 	[ -z "$due" ] && due="9999-99-99"
-	task=$(echo "$line" | sed 's/due:\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) //;s/\((\w\+)\)\? \?!\? \?//;s/\(+\w\+\) \?//g;s/\(@\w\+\) \?//g' )
+	task=$(echo "$line" | sed 's/due:\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \?//;s/\((\w\+)\)\? \?!\? \?//;s/\(+\w\+\) \?//g;s/\(@\w\+\) \?//g' )
 	[ $p ] && c="PRI_$p"
 	if [ $today -gt $taskdate ] ; then
 		c="EXPIRED"
