@@ -25,5 +25,5 @@ Any `"$@"` will be interpreted as query for grep function
 ### Examples
 
 `todo $(date +%F)`: outputs today's tasks  
-`todo | awk -F'\t' '$NF ~ /^[0-9]/'`: tasks with date  
-`todo | awk -F'\t' '$NF !~ /^[0-9]/'`: tasks without date
+`todo | awk -F'\t' '$NF ~ /^2/'`: tasks with date  
+`todo | awk -F'\t' '$NF !~ /^2/'`: tasks without date
