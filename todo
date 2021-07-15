@@ -1,15 +1,6 @@
 #!/bin/sh
-export RED='\033[0;31m'
-export GREEN='\033[0;32m'
-export YELLOW='\033[1;33m'
-export LIGHT_BLUE='\033[1;34m'
-export WHITE='\033[1;37m'
-export DEFAULT='\033[0m'
-export PRI_A=$YELLOW
-export PRI_B=$GREEN
-export PRI_C=$LIGHT_BLUE
-export PRI_X=$WHITE
-export EXPIRED=$RED
+export RED='\033[0;31m' GREEN='\033[0;32m' YELLOW='\033[1;33m' LIGHT_BLUE='\033[1;34m' WHITE='\033[1;37m' DEFAULT='\033[0m'
+export PRI_A=$YELLOW PRI_B=$GREEN PRI_C=$LIGHT_BLUE PRI_X=$WHITE EXPIRED=$RED
 today=$(date -d "0" +%s)
 out () {
 	projects=$(echo "$line" | grep -o '\+\w\+' | tr '\n' ' ' | sed 's/ $//')
