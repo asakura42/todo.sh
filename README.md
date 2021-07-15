@@ -30,3 +30,10 @@ Any `"$@"` will be interpreted as query for grep function
 `todo $(date +%F)`: outputs today's tasks  
 `todo | awk '$NF ~ /2/'`: tasks with date  
 `todo | awk '$NF !~ /2/'`: tasks without date
+
+inotify example:  
+```sh
+todo && while inotifywait -qq ~/todo.txt ; do
+        t=$(todo);clear;echo "$t"
+done
+```
