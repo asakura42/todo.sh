@@ -9,7 +9,7 @@ Added to vanilla todo.txt idea:
 So it becomes (colored):
 
 ```sh
-!       (A)     walk              @city               2021-07-25
+!       (F)     walk              @city               2021-07-25
         (C)     buy milk          @food     +home     2021-07-17
                 listen to music             +random  
 ```
