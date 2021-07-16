@@ -21,13 +21,7 @@ out () {
 	echo -e "${color} |$pinned|$priority|$task|$contexts|$projects|$due${DEFAULT}" | sed 's/[[:blank:]]\+/ /g'
 	unset projects contexts priority pinned due task color c p taskdate
 }
-if [ "$@" ] ; then
 	search=$(echo "$@" | sed 's/ /\\|/g')
 	while IFS= read -r line ; do
 		out &
-	done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | tr '|' '\t' | sed 's/9999-99-99//;s/ZZZZZ//' | grep -i "$search"
-else
-	while IFS= read -r line ; do
-		out &
-	done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//'  |  column -t -o'|' -s'|' | tr '|' '\t' | sed 's/9999-99-99//;s/ZZZZZ//' 
-fi
+	done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | tr '|' '\t' | sed 's/9999-99-99//;s/ZZZZZ//' | grep -i "${@:-^}"
