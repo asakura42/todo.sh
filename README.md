@@ -41,5 +41,5 @@ done
 ### TODO
 1. Daemon mode and alarms at specified hours
 2. Recurrent tasks
-3. Parent/child tasks
+3. Master/slave tasks
 4. Keeping it simple stupid
