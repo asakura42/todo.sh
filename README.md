@@ -37,3 +37,9 @@ todo && while inotifywait -qq ~/todo.txt ; do
         t=$(todo);clear;echo "$t"
 done
 ```
+
+### TODO
+1. Daemon mode and alarms at specified hours
+2. Recurrent tasks
+3. Parent/child tasks
+4. Keeping it simple stupid
