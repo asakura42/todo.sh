@@ -8,7 +8,7 @@ out () {
 	priority=$(echo "$line" | grep -o '^([A-Z])')
 	p=$(echo "$priority"  | sed 's/(//;s/)//')
 	[ -z "$priority" ] && priority="(π)"
-	pinned=$(echo "$line" | grep -Po '(?:\([A-Z]\) )?!' | sed 's/\((\w\+)\)\? \?//;s/!/⁂/')
+	pinned=$(echo "$line" | grep -Po '(?:\([A-Z]\) )?!' | sed 's/\((\w\+)\)\? \?//')
 	due=$(echo "$line" | grep -Po 'due:\d{4}-\d{2}-\d{2}' | sed 's/due://')
 	taskdate=$(date -d "$due" +%s)
 	[ -z "$due" ] && due="9999-99-99"
@@ -18,10 +18,11 @@ out () {
 		c="EXPIRED"
 	fi
 	[ $c ] && eval color=\$$c
-	echo -e "${color} |$pinned|$priority|$task|$contexts|$projects|$due${DEFAULT}" | sed 's/[[:blank:]]\+/ /g'
+	[ -z "$color" ] && color="$DEFAULT"
+	echo -e "${color} |$pinned|$priority|$task|$contexts|$projects|$due" | sed 's/[[:blank:]]\+/ /g'
 	unset projects contexts priority pinned due task color c p taskdate
 }
 search=$(echo "$@" | sed 's/ /\\|/g')
 while IFS= read -r line ; do
 	out &
-done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | tr '|' '\t' | sed 's/9999-99-99//;s/(π)//' | grep -i "${search:-^}"
+done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | sed 's/9999-99-99//;s/(π)/   /' | grep -i "${search:-^}"  | sed 's/|/    /g' | sed -E  "s/^-e//;s/^(\x1b\[[0-9;]*m)(.{$(tput cols)}).*/\1\2/" 
