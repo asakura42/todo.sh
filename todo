@@ -8,7 +8,7 @@ out () {
 	priority=$(echo "$line" | grep -o '^([A-Z])')
 	p=$(echo "$priority"  | sed 's/(//;s/)//')
 	[ -z "$priority" ] && priority="(π)"
-	pinned=$(echo "$line" | grep -Po '(?:\([A-Z]\) )?!' | sed 's/\((\w\+)\)\? \?//')
+	pinned=$(echo "$line" | grep -Po '(?:\([A-Z]\) )?!' | sed 's/\((\w\+)\)\? \?//;s/!/⁂/')
 	due=$(echo "$line" | grep -Po 'due:\d{4}-\d{2}-\d{2}' | sed 's/due://')
 	taskdate=$(date -d "$due" +%s)
 	[ -z "$due" ] && due="9999-99-99"
