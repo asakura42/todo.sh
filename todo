@@ -25,4 +25,4 @@ out () {
 search=$(echo "$@" | sed 's/ /\\|/g')
 while IFS= read -r line ; do
 	out &
-done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | sed 's/9999-99-99//;s/(π)/   /' | grep -i "${search:-^}"  | sed 's/|/    /g' | sed -E  "s/^(\x1b\[[0-9;]*m)(.{$(tput cols)}).*/\1\2/;s/^-e//" 
+done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | sed 's/9999-99-99//;s/(π)/   /' | grep -i "${search:-^}"  | sed 's/|/    /g' | sed -E  "s/^-e//;s/^(\x1b\[[0-9;]*m)(.{$(tput cols)}).*/\1\2/" 
