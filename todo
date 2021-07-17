@@ -7,7 +7,7 @@ out () {
 	contexts=$(echo "$line" | grep -o '@\w\+' | tr '\n' ' ' | sed 's/ $//')
 	priority=$(echo "$line" | grep -o '^([A-Z])')
 	p=$(echo "$priority"  | sed 's/(//;s/)//')
-	[ -z "$priority" ] && priority="ZZZZZ"
+	[ -z "$priority" ] && priority="(π)"
 	pinned=$(echo "$line" | grep -Po '(?:\([A-Z]\) )?!' | sed 's/\((\w\+)\)\? \?//')
 	due=$(echo "$line" | grep -Po 'due:\d{4}-\d{2}-\d{2}' | sed 's/due://')
 	taskdate=$(date -d "$due" +%s)
@@ -24,4 +24,4 @@ out () {
 search=$(echo "$@" | sed 's/ /\\|/g')
 while IFS= read -r line ; do
 	out &
-done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | tr '|' '\t' | sed 's/9999-99-99//;s/ZZZZZ//' | grep -i "${search:-^}"
+done < $HOME/todo.txt | sort -t'|' -k2r,2 -k7,7 -k3,3 | sed 's/|//' |  column -t -o'|' -s'|' | tr '|' '\t' | sed 's/9999-99-99//;s/(π)//' | grep -i "${search:-^}"
