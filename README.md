@@ -1,5 +1,5 @@
 # todo.sh
-## simpler and faster than Gina's bloat. 27 SLOC.
+## simpler and faster than Gina's bloat. 26 SLOC.
 
 Added to vanilla todo.txt idea:
 
