@@ -17,7 +17,7 @@ out () {
 	if [ $today -gt $taskdate ] ; then c="EXPIRED" ; fi
 	[ $c ] && eval color=\$$c
 	[ -z "$color" ] && color="$DEFAULT"
-	echo -e "${color} |$pinned|$priority|$task|$contexts|$projects|$due" | sed 's/[[:blank:]]\+/ /g'
+	printf "%b\n" "${color} |$pinned|$priority|$task|$contexts|$projects|$due" | sed 's/[[:blank:]]\+/ /g'
 	unset projects contexts priority pinned due task color c p taskdate
 }
 search=$(echo "$@" | sed 's/ /\\|/g')
